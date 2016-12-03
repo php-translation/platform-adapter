@@ -7,5 +7,5 @@ namespace Translation\PlatformAdapter;
  */
 interface Platform
 {
-
+    // Not sure if this interface is needed
 }

@@ -2,6 +2,7 @@
 
 namespace Translation\PlatformAdapter\Adapter;
 
+use Translation\Common\Storage;
 use Translation\PlatformAdapter\Platform;
 
 /**
@@ -9,7 +10,7 @@ use Translation\PlatformAdapter\Platform;
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class Loco implements Platform
+class Loco implements Platform, Storage
 {
 
 }
