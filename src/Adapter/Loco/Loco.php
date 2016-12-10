@@ -34,16 +34,14 @@ class Loco implements Platform, Storage
     private $domainToProjectId = [];
 
     /**
-     *
      * @param LocoClient $client
-     * @param array $domainToProjectId
+     * @param array      $domainToProjectId
      */
     public function __construct(LocoClient $client, array $domainToProjectId)
     {
         $this->client = $client;
         $this->domainToProjectId = $domainToProjectId;
     }
-
 
     public function get($locale, $domain, $key)
     {
