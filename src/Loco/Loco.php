@@ -9,19 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Translation\PlatformAdapter\Adapter\Loco;
+namespace Translation\PlatformAdapter\Loco;
 
 use APIPHP\Localise\LocoClient;
 use Translation\Common\Model\Message;
 use Translation\Common\Storage;
-use Translation\PlatformAdapter\Platform;
 
 /**
  * Localize.biz.
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class Loco implements Platform, Storage
+class Loco implements Storage
 {
     /**
      * @var LocoClient
