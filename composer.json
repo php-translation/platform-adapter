@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Translation\\PlatformAdapter\\Loco": "src/Loco/src"
+            "Translation\\PlatformAdapter\\Loco\\": "src/Loco/src/"
         }
     },
     "autoload-dev": {
