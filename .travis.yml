@@ -18,18 +18,8 @@ env:
   global:
     - TEST_COMMAND="composer test"
 
-matrix:
-  fast_finish: true
-  include:
-    - php: 5.5
-      env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" COVERAGE=true TEST_COMMAND="composer test-ci"
-
 install:
     - travis_retry composer update --prefer-dist --no-interaction
 
 script:
     - $TEST_COMMAND
-
-after_success:
-    - if [[ $COVERAGE = true ]]; then wget https://scrutinizer-ci.com/ocular.phar; fi
-    - if [[ $COVERAGE = true ]]; then php ocular.phar code-coverage:upload --format=php-clover build/coverage.xml; fi
