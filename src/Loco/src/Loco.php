@@ -59,7 +59,7 @@ class Loco implements Storage
         $response = $this->client->translations()
             ->create($projectKey, $message->getKey(), $message->getLocale(), $message->getTranslation());
         // Check it it was any error
-        if ("" === $response->getId()) {
+        if ('' === $response->getId()) {
             // Create asset first
             $this->client->asset()->create($projectKey, $message->getKey());
             $this->client->translations()
