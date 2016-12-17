@@ -50,6 +50,8 @@ translation_adapter_loco:
       domains: ['messages', 'navigation']
 ```
 
+This will produce a service named `php_translation.adapter.loco` that could be used in the configuration for
+the [Translation Bundle](https://github.com/php-translation/symfony-bundle).
 
 ### Documentation
 
