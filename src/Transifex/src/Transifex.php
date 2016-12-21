@@ -18,8 +18,6 @@ use Translation\Common\Model\Message;
 use Translation\Common\Storage;
 
 /**
- * Localize.biz.
- *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class Transifex implements Storage
