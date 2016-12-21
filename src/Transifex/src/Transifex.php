@@ -36,7 +36,7 @@ class Transifex implements Storage
 
     /**
      * @param TransifexClient $client
-     * @param array      $domainToProjectId
+     * @param array           $domainToProjectId
      */
     public function __construct(TransifexClient $client, array $domainToProjectId)
     {

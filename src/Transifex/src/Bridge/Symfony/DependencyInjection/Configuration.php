@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
         $root->children()
             ->scalarNode('username')->cannotBeEmpty()->end()
             ->scalarNode('password')->cannotBeEmpty()->end()
+            ->append($this->getProjectNode())
         ->end();
 
         return $treeBuilder;
