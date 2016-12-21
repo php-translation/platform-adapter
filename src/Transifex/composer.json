@@ -1,0 +1,34 @@
+{
+    "name": "php-translation/transifex-adapter",
+    "description": "Adapter for transifex.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Nyholm",
+            "email": "tobias.nyholm@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "php-translation/common": "^0.1",
+        "babdev/transifex": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.5 || ^5.4",
+        "nyholm/symfony-bundle-test": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Translation\\PlatformAdapter\\Transifex\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Translation\\PlatformAdapter\\Transifex\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-ci": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml"
+    }
+}
