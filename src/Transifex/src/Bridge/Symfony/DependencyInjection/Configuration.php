@@ -28,8 +28,8 @@ class Configuration implements ConfigurationInterface
         $root = $treeBuilder->root('translation_adapter_transifex');
 
         $root->children()
-            ->scalarNode('username')->cannotBeEmpty()->end()
-            ->scalarNode('password')->cannotBeEmpty()->end()
+            ->scalarNode('username')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('password')->isRequired()->cannotBeEmpty()->end()
             ->append($this->getProjectNode())
         ->end();
 

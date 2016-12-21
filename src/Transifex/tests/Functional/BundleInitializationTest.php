@@ -22,6 +22,13 @@ class BundleInitializationTest extends BaseBundleTestCase
         return TranslationAdapterTransifexBundle::class;
     }
 
+    protected function setUp()
+    {
+        $kernel = $this->createKernel();
+        $kernel->addConfigFile(__DIR__.'/../Resources/config.yml');
+        parent::setUp();
+    }
+
     public function testRegisterBundle()
     {
         $this->bootKernel();
