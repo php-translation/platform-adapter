@@ -17,6 +17,9 @@ php:
 env:
   global:
     - TEST_COMMAND="composer test"
+  matrix:
+    - SYMFONY_VERSION=3.2.*
+    - SYMFONY_VERSION=2.7.*
 
 install:
     - travis_retry composer update --prefer-dist --no-interaction

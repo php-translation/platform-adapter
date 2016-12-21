@@ -9,7 +9,8 @@ do
     then
         cd $D
         echo "Updating dependencies"
-        composer update
+        composer require symfony/symfony:${SYMFONY_VERSION} --no-update
+        composer update --prefer-dist --no-interaction
 
         echo "Running tests"
         ./vendor/bin/phpunit "$@"
