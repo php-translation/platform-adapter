@@ -11,7 +11,7 @@
     "require": {
         "php": "^7.0",
         "php-translation/common": "^0.1",
-        "babdev/transifex": "dev-master"
+        "babdev/transifex": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.5 || ^5.4",
