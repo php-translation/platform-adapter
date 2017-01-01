@@ -52,6 +52,23 @@ class Transifex implements Storage
         return new Message($key, $domain, $locale, $translation, $meta);
     }
 
+    public function create(Message $message)
+    {
+        $projectKey = $this->getApiKey($message->getDomain());
+
+        $this->client->get('resources')->createResource($projectKey, $message->getKey(), $message->getKey(), 'TXT');
+        $translation = (string) $this->client->get('translations')->getTranslation($projectKey, $message->getKey(), $message->getLocale())->getBody();
+        if (empty($translation)) {
+            $this->client->get('translations')
+                ->updateTranslation(
+                    $projectKey,
+                    $message->getKey(),
+                    $message->getLocale(),
+                    $message->getTranslation()
+                );
+        }
+    }
+
     public function update(Message $message)
     {
         $projectKey = $this->getApiKey($message->getDomain());
@@ -61,16 +78,13 @@ class Transifex implements Storage
             ->updateTranslation($projectKey, $message->getKey(), $message->getLocale(), $message->getTranslation());
         // Check it it was any error
         if ($response->getStatusCode() !== 200) {
-            // Create asset first
-            $this->client->get('translations')->createResource($projectKey, $message->getKey(), $message->getKey(), 'TXT');
-            $this->client->get('translations')
-                ->updateTranslation($projectKey, $message->getKey(), $message->getLocale(), $message->getTranslation());
+            $this->create($message);
         }
     }
 
     public function delete($locale, $domain, $key)
     {
-        // Transifex API does not support deleting resources.
+        // Transifex API does not support deleting translations.
     }
 
     /**
