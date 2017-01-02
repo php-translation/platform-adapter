@@ -28,34 +28,15 @@ class Configuration implements ConfigurationInterface
         $root = $treeBuilder->root('translation_adapter_flysystem');
 
         $root->children()
-            ->scalarNode('httplug_client')->defaultValue('httplug.client')->cannotBeEmpty()->end()
-            ->scalarNode('httplug_message_factory')->defaultValue('httplug.message_factory')->cannotBeEmpty()->end()
-            ->scalarNode('httplug_uri_factory')->defaultValue('httplug.uri_factory')->cannotBeEmpty()->end()
-            ->append($this->getProjectNode())
-        ->end();
-
-        return $treeBuilder;
-    }
-
-    /**
-     * @return \Symfony\Component\Config\Definition\Builder\NodeDefinition
-     */
-    private function getProjectNode()
-    {
-        $treeBuilder = new TreeBuilder();
-        $node = $treeBuilder->root('projects');
-        $node
+            ->scalarNode('filesystems')
             ->useAttributeAsKey('name')
             ->prototype('array')
             ->children()
-                ->scalarNode('api_key')->isRequired()->end()
-                ->arrayNode('domains')
-                    ->requiresAtLeastOneElement()
-                    ->prototype('scalar')->end()
-                ->end()
+                ->scalarNode('flysystem_service')->isRequired()->end()
+                ->scalarNode('path')->isRequired()->end()
             ->end()
         ->end();
 
-        return $node;
+        return $treeBuilder;
     }
 }

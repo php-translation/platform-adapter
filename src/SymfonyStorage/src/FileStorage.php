@@ -11,7 +11,7 @@
 
 namespace Translation\SymfonyStorage;
 
-use Symfony\Bundle\FrameworkBundle\Translation\TranslationLoader;
+use Symfony\Bundle\FrameworkBundle\Translation\TranslationLoader as SymfonyTranslationLoader;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Translation\Writer\TranslationWriter;
 use Translation\Common\Model\Message;
@@ -46,11 +46,15 @@ final class FileStorage implements Storage
 
     /**
      * @param TranslationWriter $writer
-     * @param TranslationLoader $loader
+     * @param mixed             $loader
      * @param array             $dir
      */
-    public function __construct(TranslationWriter $writer, TranslationLoader $loader, array $dir)
+    public function __construct(TranslationWriter $writer, $loader, array $dir)
     {
+        if (!$loader instanceof SymfonyTranslationLoader && !$loader instanceof TranslationLoader) {
+            throw new \LogicException('Second parameter of FileStorage must be a Symfony translation loader or implement Translation\SymfonyStorage\TranslationLoader');
+        }
+
         $this->writer = $writer;
         $this->loader = $loader;
         $this->dir = $dir;

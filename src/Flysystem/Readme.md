@@ -3,7 +3,7 @@
 [![Latest Version](https://img.shields.io/github/release/php-translation/flysystem-adapter.svg?style=flat-square)](https://github.com/php-translation/flysystem-adapter/releases)
 [![Total Downloads](https://img.shields.io/packagist/dt/php-translation/flysystem-adapter.svg?style=flat-square)](https://packagist.org/packages/php-translation/flysystem-adapter)
 
-This is an PHP-translation adapter for Flysystem ([Localise.biz](https://localise.biz/)). 
+This is an PHP-translation adapter for [Flysystem](https://flysystem.thephpleague.com/).
 
 ### Install
 
@@ -28,29 +28,22 @@ public function registerBundles()
 }
 ```
 
-If you have one Flysystem project per domain you may configure the bundle like this: 
+Configure Flysystem adapters like
 ``` yaml
 # /app/config/config.yml
 translation_adapter_flysystem:
-  projects:
-    messages:
-      api_key: 'foobar' 
-    navigation:
-      api_key: 'bazbar' 
+  filesystems:
+    local:
+      flysystem_service: 'local.service_id' 
+      path: 'path/to/trans' 
+    foobar:
+      flysystem_service: 'foobar.service_id' 
+      path: 'path/to/trans' 
 ```
 
-If you just doing one project and have tags for all your translation domains you may use this configuration:
-``` yaml
 
-# /app/config/config.yml
-translation_adapter_flysystem:
-  projects:
-    acme:
-      api_key: 'foobar'   
-      domains: ['messages', 'navigation']
-```
-
-This will produce a service named `php_translation.adapter.flysystem` that could be used in the configuration for
+This will produce two services named `php_translation.adapter.flysystem.local` 
+and `php_translation.adapter.flysystem.foobar` that could be used in the configuration for
 the [Translation Bundle](https://github.com/php-translation/symfony-bundle).
 
 ### Documentation
