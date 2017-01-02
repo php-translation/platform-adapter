@@ -21,6 +21,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Translation\\PlatformAdapter\\Flysystem\\": "src/Flysystem/src/",
             "Translation\\PlatformAdapter\\Loco\\": "src/Loco/src/",
             "Translation\\PlatformAdapter\\Transifex\\": "src/Transifex/src/",
             "Translation\\SymfonyStorage\\": "src/SymfonyStorage/src/"
