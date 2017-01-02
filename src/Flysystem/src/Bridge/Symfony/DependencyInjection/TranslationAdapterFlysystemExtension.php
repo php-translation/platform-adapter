@@ -11,11 +11,7 @@
 
 namespace Translation\PlatformAdapter\Flysystem\Bridge\Symfony\DependencyInjection;
 
-use FAPI\Localise\HttpClientConfigurator;
-use FAPI\Localise\FlysystemClient;
-use FAPI\Localise\RequestBuilder;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Translation\Writer\TranslationWriter;

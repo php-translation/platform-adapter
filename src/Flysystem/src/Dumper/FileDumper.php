@@ -1,13 +1,19 @@
 <?php
 
+/*
+ * This file is part of the PHP Translation package.
+ *
+ * (c) PHP Translation team <tobias.nyholm@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Translation\PlatformAdapter\Flysystem\Dumper;
 
 use Symfony\Component\Translation\Dumper\DumperInterface;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Translation\Exception\InvalidArgumentException;
-use League\Flysystem\FileExistsException;
-use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem;
 use Symfony\Component\Translation\Exception\RuntimeException;
 
@@ -73,7 +79,7 @@ abstract class FileDumper implements DumperInterface
     /**
      * {@inheritdoc}
      */
-    public function dump(MessageCatalogue $messages, $options = array())
+    public function dump(MessageCatalogue $messages, $options = [])
     {
         if (!array_key_exists('path', $options)) {
             throw new InvalidArgumentException('The file dumper needs a path option.');
@@ -112,7 +118,7 @@ abstract class FileDumper implements DumperInterface
      *
      * @return string representation
      */
-    abstract public function formatCatalogue(MessageCatalogue $messages, $domain, array $options = array());
+    abstract public function formatCatalogue(MessageCatalogue $messages, $domain, array $options = []);
 
     /**
      * Gets the file extension of the dumper.
@@ -131,10 +137,10 @@ abstract class FileDumper implements DumperInterface
      */
     private function getRelativePath($domain, $locale)
     {
-        return strtr($this->relativePathTemplate, array(
+        return strtr($this->relativePathTemplate, [
             '%domain%' => $domain,
             '%locale%' => $locale,
             '%extension%' => $this->getExtension(),
-        ));
+        ]);
     }
 }

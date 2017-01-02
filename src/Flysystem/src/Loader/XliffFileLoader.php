@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the PHP Translation package.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * (c) PHP Translation team <tobias.nyholm@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -34,14 +34,12 @@ final class XliffFileLoader implements LoaderInterface
     private $filesystem;
 
     /**
-     *
      * @param Filesystem filesystem
      */
     public function __construct(Filesystem $filesystem)
     {
         $this->filesystem = $filesystem;
     }
-
 
     /**
      * {@inheritdoc}
@@ -109,13 +107,13 @@ final class XliffFileLoader implements LoaderInterface
 
             $catalogue->set((string) $source, $target, $domain);
 
-            $metadata = array();
+            $metadata = [];
             if ($notes = $this->parseNotesMetadata($translation->note, $encoding)) {
                 $metadata['notes'] = $notes;
             }
 
             if (isset($translation->target) && $translation->target->attributes()) {
-                $metadata['target-attributes'] = array();
+                $metadata['target-attributes'] = [];
                 foreach ($translation->target->attributes() as $key => $value) {
                     $metadata['target-attributes'][$key] = (string) $value;
                 }
@@ -150,9 +148,9 @@ final class XliffFileLoader implements LoaderInterface
 
             $catalogue->set((string) $source, $target, $domain);
 
-            $metadata = array();
+            $metadata = [];
             if (isset($segment->target) && $segment->target->attributes()) {
-                $metadata['target-attributes'] = array();
+                $metadata['target-attributes'] = [];
                 foreach ($segment->target->attributes() as $key => $value) {
                     $metadata['target-attributes'][$key] = (string) $value;
                 }
@@ -258,7 +256,7 @@ final class XliffFileLoader implements LoaderInterface
      */
     private function getXmlErrors($internalErrors)
     {
-        $errors = array();
+        $errors = [];
         foreach (libxml_get_errors() as $error) {
             $errors[] = sprintf('[%s %s] %s (in %s - line %d, column %d)',
                 LIBXML_ERR_WARNING == $error->level ? 'WARNING' : 'ERROR',
@@ -317,7 +315,7 @@ final class XliffFileLoader implements LoaderInterface
      */
     private function parseNotesMetadata(\SimpleXMLElement $noteElement = null, $encoding = null)
     {
-        $notes = array();
+        $notes = [];
 
         if (null === $noteElement) {
             return $notes;
@@ -326,7 +324,7 @@ final class XliffFileLoader implements LoaderInterface
         /** @var \SimpleXMLElement $xmlNote */
         foreach ($noteElement as $xmlNote) {
             $noteAttributes = $xmlNote->attributes();
-            $note = array('content' => $this->utf8ToCharset((string) $xmlNote, $encoding));
+            $note = ['content' => $this->utf8ToCharset((string) $xmlNote, $encoding)];
             if (isset($noteAttributes['priority'])) {
                 $note['priority'] = (int) $noteAttributes['priority'];
             }
@@ -344,7 +342,7 @@ final class XliffFileLoader implements LoaderInterface
     /**
      * Loads an XML file.
      *
-     * @param string               $content             An XML file path
+     * @param string               $content          An XML file path
      * @param string|callable|null $schemaOrCallable An XSD schema file path, a callable, or null to disable validation
      *
      * @return \DOMDocument
@@ -403,7 +401,7 @@ final class XliffFileLoader implements LoaderInterface
             if (!$valid) {
                 $messages = static::getXmlErrors($internalErrors);
                 if (empty($messages)) {
-                    $messages = array(sprintf('The XML file "%s" is not valid.', $file));
+                    $messages = [sprintf('The XML file "%s" is not valid.', $file)];
                 }
                 throw new \InvalidArgumentException(implode("\n", $messages), 0, $e);
             }
